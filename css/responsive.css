@@ -1,15 +1,5 @@
-/* ================================
-   RESPONSIVE DESIGN
-   ================================ */
+/* Responsive Design */
 
-/* Large screens - Desktop */
-@media (min-width: 1024px) {
-    .login-container {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-/* Medium screens - Tablets */
 @media (max-width: 1023px) {
     .login-container {
         grid-template-columns: 1fr;
@@ -39,7 +29,38 @@
     }
 }
 
-/* Small screens - Mobile */
+@media (max-width: 768px) {
+    .dashboard-page {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        transform: translateX(-100%);
+        transition: transform 300ms ease;
+        z-index: 300;
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    .btn-toggle-sidebar {
+        display: block;
+    }
+
+    .search-bar input {
+        min-width: 150px;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media (max-width: 640px) {
     :root {
         --spacing-lg: 1rem;
@@ -57,7 +78,7 @@
 
     .login-container {
         border-radius: var(--radius-lg);
-        box-shadow: var(--shadow-lg);
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
     }
 
     .login-left {
@@ -115,15 +136,23 @@
         min-width: auto;
         width: 100%;
     }
+
+    .content-area {
+        padding: var(--spacing-lg);
+    }
+
+    .search-bar input {
+        min-width: auto;
+    }
 }
 
-/* Extra small screens */
 @media (max-width: 480px) {
     :root {
         --spacing-md: 0.75rem;
         --spacing-lg: 1rem;
         --spacing-xl: 1.25rem;
         --radius-lg: 0.5rem;
+        --sidebar-width: 256px;
     }
 
     .login-left {
@@ -144,11 +173,6 @@
 
     .brand-section p {
         font-size: var(--font-size-sm);
-    }
-
-    .features-list {
-        margin-top: var(--spacing-xl);
-        gap: var(--spacing-md);
     }
 
     .feature-item i {
@@ -180,7 +204,6 @@
     input[type="text"],
     input[type="email"],
     input[type="password"],
-    input[type="number"],
     select,
     textarea {
         padding: var(--spacing-sm) var(--spacing-md);
@@ -201,48 +224,6 @@
     }
 }
 
-/* Landscape orientation - Mobile */
-@media (max-height: 600px) and (orientation: landscape) {
-    .login-left {
-        display: none;
-    }
-
-    .login-container {
-        grid-template-columns: 1fr;
-        min-height: auto;
-    }
-
-    .login-right {
-        min-height: auto;
-        padding: var(--spacing-lg);
-    }
-
-    .login-form-wrapper {
-        max-width: 100%;
-    }
-
-    .features-list {
-        display: none;
-    }
-}
-
-/* Print styles */
-@media print {
-    body {
-        background-color: white;
-    }
-
-    .login-page {
-        background: white;
-    }
-
-    .login-container {
-        box-shadow: none;
-        border-radius: 0;
-    }
-}
-
-/* Dark mode preference */
 @media (prefers-color-scheme: dark) {
     :root:not(.dark-mode) {
         --bg-primary: var(--dark-bg);
@@ -251,21 +232,10 @@
         --border-color: var(--dark-border);
         --card-bg: var(--dark-surface);
         --input-bg: #0f3460;
-        --input-border: var(--dark-border);
         --input-text: var(--dark-text);
     }
 }
 
-/* Accessibility - High contrast */
-@media (prefers-contrast: more) {
-    :root {
-        --primary-color: #3d4fbf;
-        --text-primary: #000000;
-        --border-color: #333333;
-    }
-}
-
-/* Accessibility - Reduced motion */
 @media (prefers-reduced-motion: reduce) {
     * {
         animation-duration: 0.01ms !important;

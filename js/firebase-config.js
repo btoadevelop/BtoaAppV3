@@ -1,5 +1,5 @@
 // Firebase Configuration
-// Update dengan credentials Firebase Anda
+// Update dengan credentials Firebase Anda dari https://console.firebase.google.com
 
 const firebaseConfig = {
     apiKey: "YOUR_API_KEY",
@@ -11,28 +11,6 @@ const firebaseConfig = {
     measurementId: "YOUR_MEASUREMENT_ID"
 };
 
-// Import Firebase modules
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-import { getAuth, setPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
-import { getStorage } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-storage.js";
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-
-// Initialize Firebase Services
-const auth = getAuth(app);
-const db = getFirestore(app);
-const storage = getStorage(app);
-
-// Set persistence to LOCAL
-setPersistence(auth, browserLocalPersistence)
-    .catch(error => console.error('Persistence error:', error));
-
-// Export untuk penggunaan di modul lain
-window.firebaseApp = {
-    app,
-    auth,
-    db,
-    storage
-};
+// Firebase initialization akan dilakukan saat diperlukan
+window.firebaseConfig = firebaseConfig;
+console.log('Firebase config loaded. Update dengan credentials Anda.');

@@ -9,24 +9,10 @@
     --primary-light: #7b8eff;
     
     --secondary-color: #ff6b6b;
-    --secondary-dark: #ff5252;
-    --secondary-light: #ff8787;
-    
     --success-color: #2ecc71;
-    --success-dark: #27ae60;
-    --success-light: #55efc4;
-    
     --warning-color: #f39c12;
-    --warning-dark: #e67e22;
-    --warning-light: #ffb74d;
-    
     --danger-color: #e74c3c;
-    --danger-dark: #c0392b;
-    --danger-light: #ef5350;
-    
     --info-color: #3498db;
-    --info-dark: #2980b9;
-    --info-light: #64b5f6;
     
     /* ===== Neutral Colors ===== */
     --dark-bg: #1a1a2e;
@@ -45,15 +31,6 @@
     --gray-300: #d1d5db;
     --gray-400: #9ca3af;
     --gray-500: #6b7280;
-    --gray-600: #4b5563;
-    --gray-700: #374151;
-    --gray-800: #1f2937;
-    --gray-900: #111827;
-    
-    --text-primary: #2c3e50;
-    --text-secondary: #7f8c8d;
-    --text-light: #bdc3c7;
-    --text-disabled: #95a5a6;
     
     /* ===== Spacing ===== */
     --spacing-xs: 0.25rem;
@@ -75,11 +52,7 @@
     --radius-full: 9999px;
     
     /* ===== Typography ===== */
-    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-        sans-serif;
-    --font-mono: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-    
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
     --font-size-xs: 0.75rem;
     --font-size-sm: 0.875rem;
     --font-size-base: 1rem;
@@ -89,69 +62,12 @@
     --font-size-3xl: 1.875rem;
     --font-size-4xl: 2.25rem;
     
-    --font-weight-light: 300;
-    --font-weight-normal: 400;
-    --font-weight-medium: 500;
-    --font-weight-semibold: 600;
-    --font-weight-bold: 700;
-    --font-weight-extrabold: 800;
-    
-    --line-height-tight: 1.2;
-    --line-height-normal: 1.5;
-    --line-height-relaxed: 1.75;
-    --line-height-loose: 2;
-    
-    /* ===== Shadows ===== */
-    --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-    --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-    
-    --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
-    
-    /* ===== Transitions ===== */
-    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-slower: 500ms cubic-bezier(0.4, 0, 0.2, 1);
-    
-    /* ===== Z-Index ===== */
-    --z-dropdown: 100;
-    --z-sticky: 200;
-    --z-fixed: 300;
-    --z-modal-backdrop: 400;
-    --z-modal: 500;
-    --z-popover: 600;
-    --z-tooltip: 700;
-    --z-notification: 800;
-    
-    /* ===== Breakpoints (for use in JS) ===== */
-    --breakpoint-xs: 320px;
-    --breakpoint-sm: 640px;
-    --breakpoint-md: 768px;
-    --breakpoint-lg: 1024px;
-    --breakpoint-xl: 1280px;
-    --breakpoint-2xl: 1536px;
-    
     /* ===== Other ===== */
     --sidebar-width: 280px;
-    --sidebar-width-mobile: 256px;
     --header-height: 70px;
-    --border-width: 1px;
-}
-
-/* Dark Mode */
-:root.dark-mode {
-    --bg-primary: var(--dark-bg);
-    --bg-secondary: var(--dark-surface);
-    --text-primary: var(--dark-text);
-    --border-color: var(--dark-border);
-    --card-bg: var(--dark-surface);
-    --input-bg: #0f3460;
-    --input-border: var(--dark-border);
-    --input-text: var(--dark-text);
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* Light Mode (default) */
@@ -162,53 +78,39 @@
     --border-color: var(--light-border);
     --card-bg: var(--light-bg);
     --input-bg: var(--light-bg);
-    --input-border: var(--light-border);
     --input-text: var(--light-text);
 }
 
-/* ===== Base Styling ===== */
+/* Dark Mode */
+:root.dark-mode {
+    --bg-primary: var(--dark-bg);
+    --bg-secondary: var(--dark-surface);
+    --text-primary: var(--dark-text);
+    --border-color: var(--dark-border);
+    --card-bg: var(--dark-surface);
+    --input-bg: #0f3460;
+    --input-text: var(--dark-text);
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-    font-size: 16px;
-}
+html { scroll-behavior: smooth; font-size: 16px; }
 
 body {
     font-family: var(--font-family);
     font-size: var(--font-size-base);
-    line-height: var(--line-height-normal);
+    line-height: 1.5;
     color: var(--text-primary);
     background-color: var(--bg-primary);
-    transition: background-color var(--transition-base),
-                color var(--transition-base);
+    transition: background-color 200ms, color 200ms;
 }
 
-/* Scrollbar Styling */
-::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: var(--bg-secondary);
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--gray-400);
-    border-radius: var(--radius-md);
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--gray-500);
-}
-
-/* Selection */
-::selection {
-    background-color: var(--primary-color);
-    color: white;
-}
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-secondary); }
+::-webkit-scrollbar-thumb { background: var(--gray-400); border-radius: var(--radius-md); }
+::-webkit-scrollbar-thumb:hover { background: var(--gray-500); }
+::selection { background-color: var(--primary-color); color: white; }

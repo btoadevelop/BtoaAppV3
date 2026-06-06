@@ -13,7 +13,6 @@ class BtoaApp {
     }
 
     setupEventListeners() {
-        // Auth form events
         const loginForm = document.getElementById('loginForm');
         const registerForm = document.getElementById('registerForm');
         const forgotForm = document.getElementById('forgotForm');
@@ -30,7 +29,6 @@ class BtoaApp {
             forgotForm.addEventListener('submit', (e) => this.handleForgotPassword(e));
         }
 
-        // Form switching
         document.getElementById('switchToRegister')?.addEventListener('click', (e) => {
             e.preventDefault();
             this.switchAuthForm('register');
@@ -51,8 +49,8 @@ class BtoaApp {
             this.switchAuthForm('login');
         });
 
-        // Password visibility toggle
         this.setupPasswordToggle();
+        this.setupPasswordStrength();
     }
 
     setupPasswordToggle() {
@@ -76,26 +74,47 @@ class BtoaApp {
         });
     }
 
+    setupPasswordStrength() {
+        const passwordInput = document.getElementById('registerPassword');
+        if (!passwordInput) return;
+
+        passwordInput.addEventListener('input', () => {
+            const validation = window.appHelpers.validatePassword(passwordInput.value);
+            const fill = document.getElementById('strengthFill');
+            const text = document.getElementById('strengthText');
+
+            if (fill && text) {
+                const width = (validation.score / 5) * 100;
+                fill.style.width = width + '%';
+                text.textContent = validation.label;
+
+                if (validation.score <= 1) fill.style.backgroundColor = '#e74c3c';
+                else if (validation.score === 2) fill.style.backgroundColor = '#f39c12';
+                else if (validation.score === 3) fill.style.backgroundColor = '#f1c40f';
+                else if (validation.score === 4) fill.style.backgroundColor = '#2ecc71';
+                else fill.style.backgroundColor = '#27ae60';
+            }
+        });
+    }
+
     switchAuthForm(formType) {
         const loginForm = document.getElementById('loginForm');
         const registerForm = document.getElementById('registerForm');
         const forgotForm = document.getElementById('forgotForm');
 
-        // Hide all forms
-        loginForm.style.display = 'none';
-        registerForm.style.display = 'none';
-        forgotForm.style.display = 'none';
+        if (loginForm) loginForm.style.display = 'none';
+        if (registerForm) registerForm.style.display = 'none';
+        if (forgotForm) forgotForm.style.display = 'none';
 
-        // Show selected form
         switch(formType) {
             case 'login':
-                loginForm.style.display = 'block';
+                if (loginForm) loginForm.style.display = 'block';
                 break;
             case 'register':
-                registerForm.style.display = 'block';
+                if (registerForm) registerForm.style.display = 'block';
                 break;
             case 'forgot':
-                forgotForm.style.display = 'block';
+                if (forgotForm) forgotForm.style.display = 'block';
                 break;
         }
     }
@@ -114,7 +133,6 @@ class BtoaApp {
         document.getElementById('passwordError').textContent = '';
         document.getElementById('loadingSpinner').style.display = 'flex';
 
-        // TODO: Implement login logic
         window.appHelpers.showToast('Login functionality coming soon', 'info');
         document.getElementById('loadingSpinner').style.display = 'none';
     }
@@ -126,7 +144,6 @@ class BtoaApp {
         const password = document.getElementById('registerPassword').value;
         const confirmPassword = document.getElementById('confirmPassword').value;
 
-        // Validation
         if (!name.trim()) {
             document.getElementById('nameError').textContent = 'Nama tidak boleh kosong';
             return;
@@ -150,7 +167,6 @@ class BtoaApp {
 
         document.getElementById('loadingSpinner').style.display = 'flex';
 
-        // TODO: Implement register logic
         window.appHelpers.showToast('Registration functionality coming soon', 'info');
         document.getElementById('loadingSpinner').style.display = 'none';
     }
@@ -166,7 +182,6 @@ class BtoaApp {
 
         document.getElementById('loadingSpinner').style.display = 'flex';
 
-        // TODO: Implement forgot password logic
         window.appHelpers.showToast('Password reset link sent to your email', 'success');
         document.getElementById('loadingSpinner').style.display = 'none';
         
@@ -176,32 +191,20 @@ class BtoaApp {
     }
 
     checkAuthentication() {
-        // Check if user is already logged in
         const token = window.appHelpers.StorageManager.get('authToken');
-        if (token) {
-            // Redirect to dashboard
+        if (token && window.location.pathname.endsWith('index.html')) {
             window.location.href = 'dashboard.html';
         }
     }
 
     setupDarkMode() {
-        const themeToggle = document.getElementById('themeToggle');
-        if (themeToggle) {
-            const isDark = window.appHelpers.StorageManager.get('darkMode') || false;
-            if (isDark) {
-                document.documentElement.classList.add('dark-mode');
-            }
-
-            themeToggle.addEventListener('click', () => {
-                document.documentElement.classList.toggle('dark-mode');
-                const isDarkNow = document.documentElement.classList.contains('dark-mode');
-                window.appHelpers.StorageManager.set('darkMode', isDarkNow);
-            });
+        const isDark = window.appHelpers.StorageManager.get('darkMode') || false;
+        if (isDark) {
+            document.documentElement.classList.add('dark-mode');
         }
     }
 }
 
-// Initialize app when DOM is ready
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
         new BtoaApp();
