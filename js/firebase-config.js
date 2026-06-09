@@ -1,11 +1,11 @@
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_AUTH_DOMAIN",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_STORAGE_BUCKET",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID",
-    measurementId: "YOUR_MEASUREMENT_ID"
+  apiKey: "AIzaSyA8Pqxr7-S2cUBTBMAxUGknsV3UmLxTH0o",
+  authDomain: "btoaappv3.firebaseapp.com",
+  projectId: "btoaappv3",
+  storageBucket: "btoaappv3.firebasestorage.app",
+  messagingSenderId: "617767588735",
+  appId: "1:617767588735:web:0bb8de934b9a3f7d53004a",
+  measurementId: "G-LSWRFR0MLQ"
 };
-window.firebaseConfig = firebaseConfig;
-console.log('Firebase config loaded. Update dengan credentials Anda.');
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
