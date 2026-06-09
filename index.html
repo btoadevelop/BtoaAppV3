@@ -177,5 +177,81 @@
     <script src="js/utils/encryption.js"></script>
     <script src="js/auth.js"></script>
     <script src="js/main.js"></script>
+    <script type="module">
+  import { registerUser, loginUser, resetPassword, loginWithGoogle } from "./js/auth.js";
+
+  // Login form
+  document.getElementById("loginForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const email = document.getElementById("loginEmail").value;
+    const password = document.getElementById("loginPassword").value;
+    loginUser(email, password)
+      .then(userCredential => {
+        alert("Login berhasil: " + userCredential.user.email);
+      })
+      .catch(error => {
+        document.getElementById("emailError").innerText = error.message;
+      });
+  });
+
+  // Register form
+  document.getElementById("registerForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const email = document.getElementById("registerEmail").value;
+    const password = document.getElementById("registerPassword").value;
+    registerUser(email, password)
+      .then(userCredential => {
+        alert("Registrasi berhasil: " + userCredential.user.email);
+      })
+      .catch(error => {
+        document.getElementById("regEmailError").innerText = error.message;
+      });
+  });
+
+  // Forgot password form
+  document.getElementById("forgotForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const email = document.getElementById("forgotEmail").value;
+    resetPassword(email)
+      .then(() => {
+        alert("Link reset password sudah dikirim ke " + email);
+      })
+      .catch(error => {
+        document.getElementById("forgotError").innerText = error.message;
+      });
+  });
+
+  // Google login
+  document.getElementById("googleLoginBtn").addEventListener("click", () => {
+    loginWithGoogle()
+      .then(result => {
+        alert("Login Google berhasil: " + result.user.email);
+      })
+      .catch(error => {
+        alert("Login Google gagal: " + error.message);
+      });
+  });
+
+  // Switch form (login <-> register <-> forgot)
+  document.getElementById("switchToRegister").addEventListener("click", () => {
+    document.getElementById("loginForm").style.display = "none";
+    document.getElementById("registerForm").style.display = "block";
+  });
+
+  document.getElementById("switchToLogin").addEventListener("click", () => {
+    document.getElementById("registerForm").style.display = "none";
+    document.getElementById("loginForm").style.display = "block";
+  });
+
+  document.getElementById("forgotPasswordLink").addEventListener("click", () => {
+    document.getElementById("loginForm").style.display = "none";
+    document.getElementById("forgotForm").style.display = "block";
+  });
+
+  document.getElementById("backToLogin").addEventListener("click", () => {
+    document.getElementById("forgotForm").style.display = "none";
+    document.getElementById("loginForm").style.display = "block";
+  });
+</script>
 </body>
 </html>
